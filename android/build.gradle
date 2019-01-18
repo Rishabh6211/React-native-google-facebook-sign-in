@@ -1,0 +1,83 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext {
+        buildToolsVersion = "27.0.3"
+        minSdkVersion = 19
+        compileSdkVersion = 27
+         
+        targetSdkVersion = 26
+        supportLibVersion = "27.1.1"
+          googlePlayServicesVersion = "11.8.0"//react-maps
+    androidMapsUtilsVersion = "0.5+"//react-maps
+        // googlePlayServicesVersion   = "16.0.1"
+    }
+    repositories {
+        google()
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+
+    }
+    configurations.all {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            def requested = details.requested
+            if (requested.group == 'com.android.support' && requested.name != 'multidex') {
+                details.useVersion "${rootProject.ext.supportLibVersion}"
+            }
+        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.4'
+         classpath 'com.google.gms:google-services:4.0.2'//react-native-fcm
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        mavenLocal()
+        google()
+        mavenCentral()
+       jcenter { url "http://jcenter.bintray.com/"}
+        maven {
+            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+            url "$rootDir/../node_modules/react-native/android"
+        }
+        maven { url 'https://maven.google.com' }
+        maven { url 'https://jitpack.io' } 
+    }
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.4'
+    distributionUrl = distributionUrl.replace("bin", "all")
+}
+
+subprojects { subproject ->
+    afterEvaluate {
+        if ((subproject.plugins.hasPlugin('android') || subproject.plugins.hasPlugin('android-library'))) {
+            android {
+                variantFilter { variant ->
+                    def names = variant.flavors*.name
+                    if (names.contains("reactNative51") || names.contains("reactNative55") || names.contains("reactNative56") || names.contains("reactNative57WixFork")) {
+                        setIgnore(true)
+                    }
+                }
+            }
+        }
+    }
+}
+// subprojects { project ->
+// def name = project.name
+// if (name.contains('react-native-image-picker')
+//         || name.contains('other module name, e.g. react-native-image-picker')) {
+//     buildscript {
+//         repositories {
+//             maven { url "https://dl.bintray.com/android/android-tools/"  }
+//         }
+//     }
+// } }

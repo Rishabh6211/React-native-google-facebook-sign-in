@@ -1,0 +1,49 @@
+
+# Uncomment the next line to define a global platform for your project
+platform :ios, '9.0'
+
+target 'DigitalCard' do
+  rn_path = '../node_modules/react-native'
+
+    pod 'yoga', path: "#{rn_path}/ReactCommon/yoga/yoga.podspec"
+    pod 'React', path: rn_path, subspecs: [
+      'Core',
+      'RCTActionSheet',
+      'RCTAnimation',
+      'RCTGeolocation',
+      'RCTImage',
+      'RCTLinkingIOS',
+      'RCTNetwork',
+      'RCTSettings',
+      'RCTText',
+      'RCTVibration',
+      'RCTWebSocket'
+    ]
+    pod 'GoogleSignIn'
+    pod 'GoogleMaps'
+    pod 'Firebase'
+    pod 'Firebase/Messaging'
+    pod 'react-native-maps', path: '../node_modules/react-native-maps'
+    pod 'react-native-google-maps', path: '../node_modules/react-native-maps'
+    pod 'react-native-fcm', :path => '../node_modules/react-native-fcm'
+    pod 'RNShare', :path => '../node_modules/react-native-share'
+    pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+    
+  pod 'RNImageCropPicker', :path => '../node_modules/react-native-image-crop-picker'
+
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    if target.name == 'react-native-google-maps'
+      target.build_configurations.each do |config|
+        config.build_settings['CLANG_ENABLE_MODULES'] = 'No'
+      end
+    end
+    if target.name == "React"
+      target.remove_from_project
+    end
+  end
+end

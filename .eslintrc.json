@@ -1,0 +1,46 @@
+{
+  "env": {
+    "browser": true
+  },
+  "extends": [
+    "airbnb",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:flowtype/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "plugins": ["flowtype", "react", "react-native", "prettier"],
+  "rules": {
+    "react/jsx-filename-extension": 0,
+    "arrow-body-style": 1,
+    "no-underscore-dangle": [
+      2,
+      {
+        "allow": ["_id", "_rev", "_encodeParams"]
+      }
+    ],
+    "react/sort-comp": 0,
+    "react/prop-types": 0,
+    "import/extensions": 0,
+    "no-use-before-define": 0,
+    "class-methods-use-this": 0,
+    "quotes": 0,
+    "react-native/split-platform-components": 0
+  },
+  "settings": {
+    "import/core-modules": [
+      "Dimensions",
+      "dismissKeyboard",
+      "enzyme",
+      "redux-mock-store"
+    ],
+    "import/resolver": {
+      "node": {
+        "paths": ["src"],
+        "moduleDirectory": ["node_modules", "node_modules/react-native"]
+      },
+      "alias": [["actions/", "src/actions"]]
+    }
+  }
+}

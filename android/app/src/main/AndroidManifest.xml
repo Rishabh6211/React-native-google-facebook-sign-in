@@ -1,0 +1,82 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.digitalcard"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- React-native-audio  -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- React-native-audio  -->
+
+    <!-- React-native-crop-image -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.front" android:required="false" />
+    <!-- React-native-crop-image -->
+    
+    <application
+      android:name=".MainApplication"
+      android:label="@string/app_name"
+      android:icon="@mipmap/ic_launcher"
+      android:allowBackup="false"
+      android:theme="@style/AppTheme"
+       >
+      <activity
+        android:name=".MainActivity"
+        android:label="@string/app_name"
+          android:launchMode="singleTop"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+        android:windowSoftInputMode="adjustResize">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+      </activity>
+      <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+      
+        <meta-data android:name="com.facebook.sdk.ApplicationId" 
+        android:value="@string/facebook_app_id"/>
+       
+
+        <!--**************** React-native-share Integration *******************-->
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" 
+                tools:replace="android:resource"/>
+        </provider>
+        <!--***************React-native-share Integration ************************-->
+
+        <!--**************** React-native-fcm Integration *******************-->
+            <meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@mipmap/ic_launcher"/>
+            <meta-data android:name="com.google.firebase.messaging.default_notification_channel_id" android:value="my_default_channel"/>
+
+            <service android:name="com.evollu.react.fcm.MessagingService" android:enabled="true" android:exported="true">
+                <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                </intent-filter>
+            </service>
+
+            <service android:name="com.evollu.react.fcm.InstanceIdService" android:exported="false">
+                <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                </intent-filter>
+            </service>
+        <!--**************** React-native-fcm Integration *******************-->
+
+        <!--***************React-native-maps ************************-->
+                <meta-data
+                    android:name="com.google.android.geo.API_KEY"
+                    android:value="AIzaSyAvWC5FxzIgT1UH3ZGzPMivSIJmaA9Bf48"/>
+                <!--***************React-native-maps ************************-->
+    </application>
+
+</manifest>

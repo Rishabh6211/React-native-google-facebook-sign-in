@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "298129193501",
+    "firebase_url": "https://digitalcard-8c980.firebaseio.com",
+    "project_id": "digitalcard-8c980",
+    "storage_bucket": "digitalcard-8c980.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:298129193501:android:9a9240524b94fedf",
+        "android_client_info": {
+          "package_name": "com.digitalcard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "298129193501-tpgdigplqrsu01cidmtloifk4i6va5lr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcMPuddQ4Fyi8Pogp2gbvBScPYSn9SqgY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
