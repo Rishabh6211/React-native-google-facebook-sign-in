@@ -40,7 +40,7 @@ https://z448401921.github.io/react-native-ui-lib/uilib-docs/public/docs/ListItem
 
 ## Author
 
-Ravi Kumar
+Rishabh Gupta
 
 Rename the project by the following commands
 
